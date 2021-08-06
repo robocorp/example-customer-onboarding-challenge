@@ -21,7 +21,7 @@ Open the challenge website
     Open Browser    ${URL}
 
 Accept cookies
-    Click    css=#onetrust-accept-btn-handler
+    Click    css=#onetrust-accept-btn-handler    noWaitAfter=True
 
 Get customers
     ${csv_url}=    Get Attribute    css=p.lead a    href
@@ -48,7 +48,7 @@ Fill and submit customer info
         IF    "${customer}[Non-Disclosure On File]" == "YES"
             Check Checkbox    css=#NDA
         END
-        Click    css=#submit_button
+        Click    css=#submit_button    force=True    noWaitAfter=True
     END
 
 Take a screenshot of the result
