@@ -18,7 +18,8 @@ Complete the customer onboarding challenge
 
 *** Keywords ***
 Open the challenge website
-    Open Browser    ${URL}
+    New Context    userAgent=Chrome/92.0.4515.159
+    New Page    ${URL}
 
 Accept cookies
     Click    css=#onetrust-accept-btn-handler    noWaitAfter=True
@@ -52,4 +53,6 @@ Fill and submit customer info
     END
 
 Take a screenshot of the result
-    Take Screenshot    selector=css=.modal-content
+    Take Screenshot
+    ...    filename=${OUTPUT_DIR}${/}result.png
+    ...    selector=css=.modal-content
