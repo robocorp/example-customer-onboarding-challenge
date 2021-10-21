@@ -11,7 +11,6 @@ ${URL}=           https://developer.automationanywhere.com/challenges/automation
 *** Tasks ***
 Complete the customer onboarding challenge
     Open the challenge website
-    Accept cookies
     ${customers}=    Get customers
     Fill and submit customer info    ${customers}
     Take a screenshot of the result
@@ -20,9 +19,6 @@ Complete the customer onboarding challenge
 Open the challenge website
     New Context    userAgent=Chrome/92.0.4515.159
     New Page    ${URL}
-
-Accept cookies
-    Click    css=#onetrust-accept-btn-handler    noWaitAfter=True
 
 Get customers
     ${csv_url}=    Get Attribute    css=p.lead a    href
