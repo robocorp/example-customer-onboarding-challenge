@@ -1,12 +1,15 @@
 *** Settings ***
-Documentation     Complete the customer onboarding challenge.
-Library           RPA.Browser.Playwright
-Library           RPA.HTTP
-Library           RPA.Tables
+Documentation       Complete the customer onboarding challenge.
+
+Library             RPA.Browser.Playwright
+Library             RPA.HTTP
+Library             RPA.Tables
+
 
 *** Variables ***
-${CSV_PATH}=      ${OUTPUT_DIR}${/}customers.csv
-${URL}=           https://developer.automationanywhere.com/challenges/automationanywherelabs-customeronboarding.html
+${CSV_PATH}=    ${OUTPUT_DIR}${/}customers.csv
+${URL}=         https://developer.automationanywhere.com/challenges/automationanywherelabs-customeronboarding.html
+
 
 *** Tasks ***
 Complete the customer onboarding challenge
@@ -14,6 +17,7 @@ Complete the customer onboarding challenge
     ${customers}=    Get customers
     Fill and submit customer info    ${customers}
     Take a screenshot of the result
+
 
 *** Keywords ***
 Open the challenge website
@@ -24,7 +28,7 @@ Get customers
     ${csv_url}=    Get Attribute    css=p.lead a    href
     RPA.HTTP.Download    ${csv_url}    ${CSV_PATH}    overwrite=True
     ${customers}=    Read table from CSV    ${CSV_PATH}
-    [Return]    ${customers}
+    RETURN    ${customers}
 
 Fill and submit customer info
     [Arguments]    ${customers}
